@@ -22,6 +22,9 @@ public class Array<T extends Comparable<T>> implements Sortable {
         checkBoundary(i);
         checkBoundary(j);
 
+        if (i == j)
+            return;
+
         T temp = this.items[i];
         this.items[i] = this.items[j];
         this.items[j] = temp;
@@ -32,6 +35,9 @@ public class Array<T extends Comparable<T>> implements Sortable {
         checkBoundary(i);
         checkBoundary(j);
 
+        if (i == j)
+            return false;
+
         return this.items[i].compareTo(this.items[j]) < 0;
     }
 
@@ -39,6 +45,9 @@ public class Array<T extends Comparable<T>> implements Sortable {
     public boolean greater(int i, int j) {
         checkBoundary(i);
         checkBoundary(j);
+
+        if (i == j)
+            return false;
 
         return this.items[i].compareTo(this.items[j]) > 0;
     }

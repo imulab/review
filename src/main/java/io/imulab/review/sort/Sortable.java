@@ -55,10 +55,12 @@ public interface Sortable {
                     if (greater(i, i+1)) {
                         return false;
                     }
+                    break;
                 case DESC:
                     if (less(i, i+1)) {
                         return false;
                     }
+                    break;
             }
         }
         return true;
