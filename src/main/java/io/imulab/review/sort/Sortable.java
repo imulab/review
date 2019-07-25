@@ -1,6 +1,6 @@
 package io.imulab.review.sort;
 
-public interface Sortable {
+public interface Sortable<T extends Comparable<T>> {
 
     /**
      * @return the total number of items in this sortable target.
@@ -43,6 +43,40 @@ public interface Sortable {
      *                                   or equal to the total number of items.
      */
     boolean greater(int i, int j);
+
+    /**
+     * Produces a range of the target identified by the indexes. Both indexes shall be within the
+     * boundary, or an {@link IndexOutOfBoundsException} will be thrown.
+     *
+     * @param startInclusive start index of the range (inclusive)
+     * @param endExclusive end index of the range (exclusive)
+     * @return a new target with elements in the specified range
+     */
+    Sortable<T> subTarget(int startInclusive, int endExclusive);
+
+    /**
+     * Completely clone a target.
+     *
+     * @return cloned target with all elements inside.
+     */
+    Sortable<T> clonedTarget();
+
+    /**
+     * Arbitrarily assign an item to a position. Index shall remain in bound, or {@link IndexOutOfBoundsException}
+     * will be thrown.
+     *
+     * @param item item
+     * @param index index
+     */
+    void assign(T item, int index);
+
+    /**
+     * Get an item at an index. Index shall remain in bound, or {@link IndexOutOfBoundsException}.
+     *
+     * @param index index
+     * @return item at index
+     */
+    T get(int index);
 
     /**
      * Convenience method to check if this target is already sort.

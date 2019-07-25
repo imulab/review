@@ -1,6 +1,6 @@
 package io.imulab.review.sort;
 
-public class Array<T extends Comparable<T>> implements Sortable {
+public class Array<T extends Comparable<T>> implements Sortable<T> {
 
     private final T[] items;
 
@@ -50,6 +50,43 @@ public class Array<T extends Comparable<T>> implements Sortable {
             return false;
 
         return this.items[i].compareTo(this.items[j]) > 0;
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public Sortable<T> subTarget(int startInclusive, int endExclusive) {
+        checkBoundary(startInclusive);
+        checkBoundary(endExclusive - 1);
+
+        if (endExclusive <= startInclusive)
+            throw new IllegalArgumentException("end less or equal to start index");
+
+        Comparable[] subItems = new Comparable[endExclusive - startInclusive];
+        System.arraycopy(this.items, startInclusive, subItems, 0, endExclusive - startInclusive);
+
+        return new Array(subItems);
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public Sortable<T> clonedTarget() {
+        Comparable[] clonedItems = new Comparable[len()];
+        if (len() >= 0) {
+            System.arraycopy(this.items, 0, clonedItems, 0, len());
+        }
+        return new Array(clonedItems);
+    }
+
+    @Override
+    public void assign(T item, int index) {
+        checkBoundary(index);
+        this.items[index] = item;
+    }
+
+    @Override
+    public T get(int index) {
+        checkBoundary(index);
+        return this.items[index];
     }
 
     private void checkBoundary(int index) {
