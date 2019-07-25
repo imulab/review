@@ -7,8 +7,23 @@ public class SelectionSortTests {
 
     @Test
     void testSortAscending() {
-        Sortable target = new Array<>(TestUtility.randomIntegerArray(0, 100, 20));
-        SelectionSort.sort(target, Sortable.Direction.ASC);
-        Assertions.assertThat(target.isSorted(Sortable.Direction.ASC)).isTrue();
+        for (int i = 0; i < 10; i++) {
+            System.out.println("Run: " + (i+1));
+            Sortable target = new Array<>(TestUtility.randomIntegerArray(0, 100, 20));
+            SelectionSort.sort(target);
+            Assertions.assertThat(target.isSorted()).isTrue();
+            System.out.println();
+        }
+    }
+
+    @Test
+    void testSortDescending() {
+        for (int i = 0; i < 10; i++) {
+            System.out.println("Run: " + (i+1));
+            Sortable target = new Array<>(TestUtility.randomIntegerArray(0, 100, 20));
+            SelectionSort.sort(target, Sortable.Direction.DESC);
+            Assertions.assertThat(target.isSorted(Sortable.Direction.DESC)).isTrue();
+            System.out.println();
+        }
     }
 }

@@ -46,7 +46,7 @@ public interface Sortable {
 
     /**
      * Convenience method to check if this target is already sort.
-     * @return true if is sorted
+     * @return true if is sorted, false otherwise
      */
     default boolean isSorted(Direction direction) {
         for (int i = 0; i < len() - 1; i++) {
@@ -64,6 +64,14 @@ public interface Sortable {
             }
         }
         return true;
+    }
+
+    /**
+     * Convenience method to check if this target is already sort in the ascending direction.
+     * @return true if is sorted, false otherwise
+     */
+    default boolean isSorted() {
+        return isSorted(Direction.ASC);
     }
 
     /**
