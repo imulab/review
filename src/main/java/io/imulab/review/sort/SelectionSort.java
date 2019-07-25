@@ -1,5 +1,12 @@
 package io.imulab.review.sort;
 
+/**
+ * For a {@link Sortable} target of size N, start from index 0. Pick the minimum (or maximum, depending on
+ * the sort direction) item in the range of [0, N) and swap it with the current item.
+ *
+ * Time complexity O(N^2)
+ * Space complexity O(N)
+ */
 public class SelectionSort {
 
     public static void sort(Sortable target, Sortable.Direction direction) {
