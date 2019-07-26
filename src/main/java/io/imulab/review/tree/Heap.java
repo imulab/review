@@ -2,6 +2,23 @@ package io.imulab.review.tree;
 
 import io.imulab.review.sort.List;
 
+/**
+ * A binary heap is a data structure where each parent is larger (in a max heap) or smaller (in a min heap) than
+ * its children. See {@code isValid} method for this invariant.
+ *
+ * Out of order events can happen during structure modification, for instance, insertion and removal. To control these
+ * modifications, the promote and demote operation is introduced.
+ *
+ * During insertion, the element is first inserted at the back and then promoted to its right place.
+ *
+ * During top removal, the first element is first exchanged with the last element and then removed. The now first
+ * element (formally the last element) is then demoted to its right place.
+ *
+ * This implementation uses a list backend so it does not have to manage the capacity cursor as it would require with
+ * an array (non-resizable) backend.
+ *
+ * @param <T>
+ */
 public class Heap<T extends Comparable<T>> extends List<T> {
 
     private final Type type;
@@ -30,8 +47,17 @@ public class Heap<T extends Comparable<T>> extends List<T> {
     public T removeTop() {
         T top = get(0);
         swap(0, len() - 1);
+
+        // remote top element at the back so
+        // it does not affect the demotion
         remove(len() - 1);
-        demote(0);
+
+        // check length before demotion because
+        // we just removed an element
+        if (len() > 0) {
+            demote(0);
+        }
+
         assert isValid();
         return top;
     }
