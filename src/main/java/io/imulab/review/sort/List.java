@@ -77,6 +77,29 @@ public class List<T extends Comparable<T>> implements Sortable<T> {
         return list.get(index);
     }
 
+    protected void add(T item) {
+        list.add(item);
+    }
+
+    protected void remove(int index) {
+        checkBoundary(index);
+
+        ArrayList<T> wip = new ArrayList<>();
+        ListIterator<T> itr = list.listIterator();
+        while (itr.hasNext()) {
+            if (itr.nextIndex() == index) {
+                itr.next();
+            }
+            // double check because we may have skipped one
+            if (itr.hasNext()) {
+                wip.add(itr.next());
+            }
+        }
+
+        list.clear();
+        list.addAll(wip);
+    }
+
     protected void checkBoundary(int index) {
         if (index < 0 || index >= this.list.size()) {
             throw new IndexOutOfBoundsException();

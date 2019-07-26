@@ -89,7 +89,7 @@ public class Array<T extends Comparable<T>> implements Sortable<T> {
         return this.items[index];
     }
 
-    private void checkBoundary(int index) {
+    protected void checkBoundary(int index) {
         if (index < 0 || index >= this.items.length) {
             throw new IndexOutOfBoundsException();
         }

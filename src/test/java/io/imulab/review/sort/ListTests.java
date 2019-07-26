@@ -79,6 +79,20 @@ public class ListTests {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
+    void testRemove() {
+        List target = new List<>(1, 2, 3, 4, 5);
+
+        target.remove(0);
+        Assertions.assertThat(target.len()).isEqualTo(4);
+        Assertions.assertThat(target.get(0)).isEqualTo(2);
+
+        target.remove(3);
+        Assertions.assertThat(target.len()).isEqualTo(3);
+        Assertions.assertThat(target.get(target.len() - 1)).isEqualTo(4);
+    }
+
+    @Test
     void testToString() {
         Sortable t1 = new List<>(1, 2, 3, 4, 5);
         Assertions.assertThat(t1.toString()).isEqualTo("[1, 2, 3, 4, 5]");
