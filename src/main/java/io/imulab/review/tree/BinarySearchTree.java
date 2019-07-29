@@ -2,6 +2,7 @@ package io.imulab.review.tree;
 
 import java.util.*;
 
+@SuppressWarnings("Duplicates")
 public class BinarySearchTree<K extends Comparable<K>, V> implements SymbolTable<K, V> {
 
     private Node root;
@@ -14,7 +15,6 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements SymbolTable
         root = put(root, key, value);
     }
 
-    @SuppressWarnings("Duplicates")
     private Node put(Node root, K key, V value) {
         if (root == null) {
             return new Node(key, value);
@@ -63,7 +63,6 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements SymbolTable
         root = delete(root, key);
     }
 
-    @SuppressWarnings("Duplicates")
     private Node delete(Node x, K key) {
         if (x == null)
             return null;

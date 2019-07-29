@@ -3,6 +3,7 @@ package io.imulab.review.tree;
 import java.util.Iterator;
 import java.util.Optional;
 
+@SuppressWarnings("Duplicates")
 public class RedBlackTree<K extends Comparable<K>, V> implements SymbolTable<K, V> {
 
     private static final Boolean RED = true;
@@ -45,7 +46,6 @@ public class RedBlackTree<K extends Comparable<K>, V> implements SymbolTable<K, 
         root = put(root, key, value);
     }
 
-    @SuppressWarnings("Duplicates")
     private Node put(Node h, K key, V value) {
         if (h == null) {
             size++;
@@ -97,7 +97,6 @@ public class RedBlackTree<K extends Comparable<K>, V> implements SymbolTable<K, 
         root = delete(root, key);
     }
 
-    @SuppressWarnings("Duplicates")
     private Node delete(Node x, K key) {
         if (x == null)
             return null;
@@ -156,7 +155,6 @@ public class RedBlackTree<K extends Comparable<K>, V> implements SymbolTable<K, 
     //     h   3
     //    / \
     //   1  2
-    @SuppressWarnings("Duplicates")
     private Node leftRotate(Node h) {
         assert h.right.color == RED;
 
@@ -185,7 +183,6 @@ public class RedBlackTree<K extends Comparable<K>, V> implements SymbolTable<K, 
     //      1   h
     //         / \
     //        2   3
-    @SuppressWarnings("Duplicates")
     private Node rightRotate(Node h) {
         assert h.left.color == RED;
 
