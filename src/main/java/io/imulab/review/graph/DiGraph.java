@@ -7,7 +7,7 @@ import java.util.Set;
  * Directed graph
  */
 @SuppressWarnings("Duplicates")
-public class DiGraph {
+public class DiGraph implements Graph {
 
     private final Vertex[] graph;
 
@@ -18,28 +18,33 @@ public class DiGraph {
         }
     }
 
-    void addEdge(int v, int w) {
+    @Override
+    public void addEdge(int v, int w) {
         checkIndex(v);
         checkIndex(w);
 
         graph[v].vertices.add(w);
     }
 
-    Iterable<Integer> adjacent(int v) {
+    @Override
+    public Iterable<Integer> adjacent(int v) {
         checkIndex(v);
         return graph[v].vertices;
     }
 
-    int degree(int v) {
+    @Override
+    public int degree(int v) {
         checkIndex(v);
         return graph[v].vertices.size();
     }
 
-    int V() {
+    @Override
+    public int V() {
         return graph.length;
     }
 
-    int E() {
+    @Override
+    public int E() {
         int count = 0;
         for (int v = 0; v < V(); v++) {
             count += degree(v);
