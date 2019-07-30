@@ -46,8 +46,8 @@ public class ConnectedComponentsTests {
         }
     }
 
-    private Graph exampleGraph() {
-        Graph g = new Graph(13);
+    private UnDiGraph exampleGraph() {
+        UnDiGraph g = new UnDiGraph(13);
 
         // component 0-1-2-3-4-5-6
         g.addEdge(0, 1);

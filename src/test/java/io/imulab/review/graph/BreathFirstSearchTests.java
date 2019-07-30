@@ -6,7 +6,7 @@ public class BreathFirstSearchTests {
 
     @Test
     void testSearch() {
-        Graph g = Graph.exampleGraph();
+        Graph g = UnDiGraph.exampleGraph();
         BreathFirstSearch bfs = new BreathFirstSearch(g, 0);
         for (int w = 1; w < g.V(); w++) {
             System.out.println("From 0 to " + w);
