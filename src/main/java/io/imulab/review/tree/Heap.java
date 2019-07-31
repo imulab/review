@@ -44,6 +44,33 @@ public class Heap<T extends Comparable<T>> extends List<T> {
         assert isValid();
     }
 
+    /**
+     * Check if a given item exists on the heap. Note that the comparison is done
+     * using {@link T#equals(Object)} method. This gives the user more flexibility.
+     * One can design an object that follows different comparison and equality rules.
+     */
+    public boolean contains(T item) {
+        for (int i = 0; i < len(); i++) {
+            if (item.equals(get(i))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Update an item. The comparison is done using {@link T#equals(Object)} method. This gives
+     * the user more flexibility. One can design an object that follows different comparison and equality rules.
+     */
+    public void update(T item) {
+        for (int i = 0; i < len(); i++) {
+            if (item.equals(get(i))) {
+                assign(item, i);
+                break;
+            }
+        }
+    }
+
     public T removeTop() {
         T top = get(0);
         swap(0, len() - 1);
