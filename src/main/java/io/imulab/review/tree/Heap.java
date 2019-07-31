@@ -62,6 +62,10 @@ public class Heap<T extends Comparable<T>> extends List<T> {
         return top;
     }
 
+    public boolean isEmpty() {
+        return len() == 0;
+    }
+
     private int parentIndexOf(int index) {
         checkBoundary(index);
         return (index - 1) / 2;
