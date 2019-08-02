@@ -12,6 +12,7 @@ import java.util.function.Function;
  * Time complexity: O(N+R)
  * Space complexity: O(N+R)
  */
+@SuppressWarnings("Duplicates")
 public class KeyIndexedCounting {
 
     /**
