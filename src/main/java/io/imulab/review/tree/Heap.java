@@ -65,7 +65,12 @@ public class Heap<T extends Comparable<T>> extends List<T> {
     public void update(T item) {
         for (int i = 0; i < len(); i++) {
             if (item.equals(get(i))) {
-                assign(item, i);
+                swap(i, len() - 1);
+                remove(len() - 1);
+                if (len() > 0) {
+                    demote(i);
+                }
+                insert(item);
                 break;
             }
         }
